@@ -5,8 +5,8 @@ from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-# driver = webdriver.Chrome()
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+# driver = webdriver.Firefox()
 driver.get("https://magento.softwaretestingboard.com/")
 driver.maximize_window()
 time.sleep(1)
@@ -34,7 +34,16 @@ lista_valori_pret.sort()
 print(lista_valori_pret[0])
 
 # Sortam produsele dupa pret crescator si validam ca s-a sortat corect in pagina
-
-
+dropdown = Select(driver.find_element(By.XPATH, "//select[@id='sorter']"))
+dropdown.select_by_visible_text("Price")
+time.sleep(1)
+lista_pret_produse_dupa_sortare = driver.find_elements(By.XPATH, "//span[@class='price']")
+lista_sortare_valoare_preturi = []
+for element in lista_pret_produse_dupa_sortare:
+        text_pret = element.text.replace('$', "")
+        lista_sortare_valoare_preturi.append(float(text_pret))
+lista_valori_pret.sort(reverse=True)
+print(f"lista_sortare_valoare_preturi: {lista_sortare_valoare_preturi}, lista_valori_pret: {lista_valori_pret}")
+assert lista_sortare_valoare_preturi == lista_valori_pret, "Eroare, listele de pret nu sunt egale"
 
 driver.quit()
