@@ -1,5 +1,8 @@
 from behave import given, when, then
 
+from pages.login_page import LoginPage
+
+
 @given("I am on the login page")
 def steps_impl(context):
     context.login_page.open()
@@ -19,3 +22,11 @@ def steps_impl(context):
 @then('I should see "{text}" message')
 def steps_impl(context, text):
     context.login_page.verify_error_message(text)
+
+@then('I should see the Logout button')
+def step_impl(context):
+    context.login_page.verify_logout_button_present()
+
+@then('I should see the MyAccout button')
+def step_impl(context):
+    context.login_page.verify_myaccount_button_present()
