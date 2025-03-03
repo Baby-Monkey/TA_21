@@ -1,3 +1,6 @@
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
 from browser import Browser
 
 
@@ -11,3 +14,6 @@ class BasePage(Browser):
 
     def click_element(self, locator):
         self.find(locator).click()
+
+    def wait_for_element(self, locator):
+        return WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(locator))
