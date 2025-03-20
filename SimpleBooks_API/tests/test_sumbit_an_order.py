@@ -1,5 +1,4 @@
 import unittest
-
 from api_requests.simple_books_requests import SimpleBooksRequests
 
 
