@@ -1,6 +1,4 @@
 import unittest
-from http.client import responses
-
 import pytest
 from api_requests.simple_books_requests import SimpleBooksRequests
 
