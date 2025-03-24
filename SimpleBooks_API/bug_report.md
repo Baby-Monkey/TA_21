@@ -1,9 +1,9 @@
 ## Testcase
 - ID
-- Titlu (verify that..., check that...)
+- Title (verify that..., check that...)
 - optional:
   - summary, description
-  - Preconditions ()
+  - Preconditions
     - login 
     - credentials
     - token 
@@ -19,10 +19,10 @@
 
 ## Bug
 - ID
-- Titlu (error description)
+- Title (error description)
 - optional:
   - summary, description
-  - Preconditions ()
+  - Preconditions
     - login
     - credentials
     - token 
@@ -40,10 +40,10 @@
 
 ## Bug
 - ID
-- Titlu (error description)
+- Title (error description)
 - optional:
   - summary, description
-  - Preconditions ()
+  - Preconditions
     - login
     - credentials
     - token 
@@ -59,14 +59,25 @@
     - At the end of the test
 
 ## Title: Unexpected response for get all books endpoint when using limit parameter equal to zero
- - Steps to reproduce
-   - use get method for endpoint "https://simple-books-api.glitch.me/books?type=&limit=0"
-   - verify the response status code 
-   - verify the response json body
- - Actual result
-   - the received response status code is 200
-   - the json response returns a list with all available books
- - Expected result
-   - the received response status code to be 400
-   - the json response contains an object with error key "Invalid value for query parameter 'limit'. Must be greater than 1."
- 
+- Steps to reproduce
+  - use get method for endpoint "https://simple-books-api.glitch.me/books?type=&limit=0"
+  - verify the response status code 
+  - verify the response json body
+- Actual result
+  - the received response status code is 200
+  - the json response returns a list with all available books
+- Expected result
+  - the received response status code to be 400
+  - the json response contains an object with error key "Invalid value for query parameter 'limit'. Must be greater than 1."
+
+## Title: Unexpected response for get all books endpoint when using limit parameter equal to -1
+- Steps to reproduce
+  - use get method for endpoint "https://simple-books-api.glitch.me/books?type=&limit=-1"
+  - verify the response status code
+  - verify the response json body
+- Actual result
+  - the received response status code is 400
+  - the response returns a dictionary with a key "error" and value "Invalid value for query parameter 'limit'. Must be greater than 0."
+- Expected result
+  - the received response status code is 400
+  - the response returns a dictionary with a key "error" and value "Invalid value for query parameter 'limit'. Must be greater than 1."
